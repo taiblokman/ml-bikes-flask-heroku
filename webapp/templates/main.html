@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bike Usage Model!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="hero is-dark is-bold is-small">
+      <div class="hero-body">
+        <h1 class="title">Bike Usage Model</h1>
+        <p class="subtitle">
+          Machine Learning Test site using <strong>Flask/Heroku</strong>!
+        </p>
+      </div>
+    </section>
+    <section class="section columns">        
+        <div class="column is-half">
+          <p class="title is-4">
+              Model: <b>{{model_name}}</b>
+          </p>
+          <form action="{{ url_for('main') }}" method="POST" is-small>
+              <input type="hidden" name="form-name" value="form-model">
+              <input type="hidden" name="model-name" value="{{model_name}}">
+              <button class="button is-dark" name="change_model" type="submit">
+                Change Classifier
+              </button>
+          </form>  
+          <br/>
+          <div class="field">
+          <form action="{{ url_for('main') }}" method="POST" is-small>
+            <input type="hidden" name="form-name" value="form-data">
+            <input type="hidden" name="model-name" value="{{model_name}}">
+            <fieldset>
+              <legend class="title is-4">Bike values:</legend>
+              <label for="temperature">Temperature:</label>
+              <input class="input is-primary" type="number" id="temperature" name="temperature" value="6" required><br>
+              <label for="humidity">Humidity:</label>
+              <input class="input is-primary" type="number" id="humidity" name="humidity" value="52" required><br>
+              <label for="windspeed">Windspeed:</label>
+              <input class="input is-primary" type="number" id="windspeed" name="windspeed" value="19" required><br><br>
+              <button class="button is-primary" name="predict" type="submit">
+                Predict
+              </button>
+            </fieldset>
+          </form>
+          </div>
+          <br />
+          {% if result %} {% for variable, value in original_input.items() %}
+          <b>{{ variable }}</b> : {{ value }} {% endfor %}
+          <br />
+          Predicted number of bikes in use:
+          <p class="title is-2">{{ result }}</p>
+          {% endif %}          
+        </div>
+        <div class="column is-half is-medium">
+
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
