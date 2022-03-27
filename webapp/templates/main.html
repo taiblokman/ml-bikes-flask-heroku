@@ -18,49 +18,73 @@
         </p>
       </div>
     </section>
-    <section class="section columns">        
-        <div class="column is-half">
-          <p class="title is-4">
-              Model: <b>{{model_name}}</b>
-          </p>
+    <section class="section columns">
+      <div class="column is-half">
+        <p class="title is-4">Model: <b>{{model_name}}</b></p>
+        <form action="{{ url_for('main') }}" method="POST" is-small>
+          <input type="hidden" name="form-name" value="form-model" />
+          <input type="hidden" name="model-name" value="{{model_name}}" />
+          <button class="button is-dark" name="change_model" type="submit">
+            Change Classifier
+          </button>
+        </form>
+        <br />
+        <div class="field">
           <form action="{{ url_for('main') }}" method="POST" is-small>
-              <input type="hidden" name="form-name" value="form-model">
-              <input type="hidden" name="model-name" value="{{model_name}}">
-              <button class="button is-dark" name="change_model" type="submit">
-                Change Classifier
-              </button>
-          </form>  
-          <br/>
-          <div class="field">
-          <form action="{{ url_for('main') }}" method="POST" is-small>
-            <input type="hidden" name="form-name" value="form-data">
-            <input type="hidden" name="model-name" value="{{model_name}}">
+            <input type="hidden" name="form-name" value="form-data" />
+            <input type="hidden" name="model-name" value="{{model_name}}" />
             <fieldset>
               <legend class="title is-4">Bike values:</legend>
               <label for="temperature">Temperature:</label>
-              <input class="input is-primary" type="number" id="temperature" name="temperature" value="6" required><br>
+              <input
+                class="input is-primary"
+                type="number"
+                id="temperature"
+                name="temperature"
+                value="6"
+                required
+              /><br />
               <label for="humidity">Humidity:</label>
-              <input class="input is-primary" type="number" id="humidity" name="humidity" value="52" required><br>
+              <input
+                class="input is-primary"
+                type="number"
+                id="humidity"
+                name="humidity"
+                value="52"
+                required
+              /><br />
               <label for="windspeed">Windspeed:</label>
-              <input class="input is-primary" type="number" id="windspeed" name="windspeed" value="19" required><br><br>
+              <input
+                class="input is-primary"
+                type="number"
+                id="windspeed"
+                name="windspeed"
+                value="19"
+                required
+              /><br /><br />
               <button class="button is-primary" name="predict" type="submit">
                 Predict
               </button>
             </fieldset>
           </form>
-          </div>
-          <br />
-          {% if result %} {% for variable, value in original_input.items() %}
-          <b>{{ variable }}</b> : {{ value }} {% endfor %}
-          <br />
-          Predicted number of bikes in use:
-          <p class="title is-2">{{ result }}</p>
-          {% endif %}          
         </div>
-        <div class="column is-half is-medium">
-
-        </div>
+        <br/>
+        {% if result %} {% for variable, value in original_input.items() %}
+        <b>{{ variable }}</b> : {{ value }} {% endfor %}
+        <br/>
+        Predicted number of bikes in use:
+        <p class="title is-2">{{ result }}</p>
+        {% endif %}
       </div>
     </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>ML-Me</strong> by
+            Taib Lokman</a>. The source code is licensed by
+            <a href="https://github.com/taiblokman">taiblokman</a>
+          </p>
+        </div>
+    </footer>
   </body>
 </html>

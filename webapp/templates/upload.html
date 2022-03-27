@@ -1,16 +1,59 @@
-<!doctype html>
 <html lang="en">
-  <head>      
-    <title>FLASK CSV File Upload</title>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bike Usage Model- Files Upload</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
   </head>
   <body>
-    <h1>Upload your CSV file</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
-      <label for="file">Temperature:</label>
-      <p><input type="file" name="file" id="file"></p>
-      <p><input type="submit" value="Submit"></p>
-    </form>
+    <section class="hero is-dark is-bold is-small">
+      <div class="hero-body">
+        <p class="title">Upload your CSV Test File</p>
+      </div>
+    </section>
+    <section class="is-small">
+        <div>
+      <form method="POST" action="" enctype="multipart/form-data">
+        <label for="file">File:</label>
+        <p><input type="file" name="file" id="file" /></p>
+        <p><input type="submit" value="Submit" /></p>
+      </form>
+      </div>
+    </section>
+      <section>
+        <div class="is-outlined is-$turquoise">
+          <table class="table is-hoverable">
+            <thead>
+              <tr>
+                <th>Uploaded Files</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for file in files %}
+              <tr>
+                <td>
+                  <a href="{{ url_for('file', filename=file[:][0]) }}">{{ file[:][0] }}</a>
+                </td>
+                <td>
+                  {{ file[:][1] }}</a>
+                </td>                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>ML-Me</strong> by
+            Taib Lokman</a>. The source code is licensed by
+            <a href="https://github.com/taiblokman">taiblokman</a>
+          </p>
+        </div>
+      </footer>        
+      </section>    
   </body>
 </html>

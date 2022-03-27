@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Bike Usage Model- Files Upload</title>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+      />
+    </head>
+    <body>
+      <section class="hero is-dark is-bold is-small">
+        <div class="hero-body">
+          <p class="title">Download Files</p>
+        </div>
+      </section>
+      <section>
+        <div class="is-outlined is-$turquoise">
+          <table class="table is-hoverable">
+            <thead>
+              <tr>
+                <th>File</th>
+              </tr>
+            </thead>
+              {% for file in files %}
+              <tr>
+                <td>
+                  <a href="{{ url_for('file', filename=file[:][0]) }}">{{ file[:][0] }}</a>
+                </td>
+                <td>
+                  {{ file[:][1] }}</a>
+                </td>                
+              </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>ML-Me</strong> by
+            Taib Lokman</a>. The source code is licensed by
+            <a href="https://github.com/taiblokman">taiblokman</a>
+          </p>
+        </div>
+      </footer>
+    </body>
+  </html>
+</html>
