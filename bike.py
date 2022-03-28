@@ -11,7 +11,7 @@ from sklearn.linear_model import LinearRegression
 
 
 df = pd.read_csv('bikes.csv')
-# print(df.head())
+print(df.head())
 
 ## plot
 # plt.figure(figsize=(11,11))
@@ -50,12 +50,17 @@ scaler = StandardScaler()
 # X = pd.DataFrame(df)
 # Apply scaler() to all the columns except the 'yes-no' and 'dummy' variables
 num_vars = ['temperature', 'humidity', 'windspeed']
-# df[num_vars] = scaler.fit_transform(df[num_vars])
+df[num_vars] = scaler.fit_transform(df[num_vars])
 
 X = df[num_vars]
+print(X)
 y = df['count']
+print(y)
 
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3, random_state=1)
+# for xgboost
+# X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.1, random_state=1)
+# for linear
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=42)
 classifier = LinearRegression()
 classifier.fit(X_train, y_train)
 print(classifier.score(X_test, y_test))
